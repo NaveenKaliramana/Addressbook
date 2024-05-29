@@ -24,7 +24,7 @@
 		  <typedef resource="org/apache/maven/artifact/ant/antlib.xml"
 		       uri="antlib:org.apache.maven.artifact.ant"
 		       classpathref="maven-ant-tasks.classpath" />
-		<path id="ant.contrib.classpath" path="${ant.home}/lib/ant-contrib.jar"/>
+		<path id="ant.contrib.classpath" path="${ant.home}/lib/ant-contrib.war"/>
 		<typedef resource="net/sf/antcontrib/antlib.xml" classpathref="ant.contrib.classpath"/>
 
 
@@ -93,7 +93,7 @@
 		<fileset dir="${project.3rdpartylibdir}"/>
 	</path>
 	<path id="build.test.classpath">
-			<pathelement location="${project.3rdpartylibdir}/junit-4.11.jar"/>
+			<pathelement location="${project.3rdpartylibdir}/junit-4.11.war"/>
 	</path>
 
    <echo message="***************************************************************************"/>
@@ -406,8 +406,8 @@
 		<!-- WE DO NOT HAVE LIBS IN OUR APPLICTION - SO WE DEFINE THE TASK AFTER GETTING THE FILE --> 
 		<path id="cobertura.classpath">
 			<fileset dir="${lib.cobertura.dir}">
-			        <include name="cobertura.jar" />
-			        <include name="lib/**/*.jar" />
+			        <include name="cobertura.war" />
+			        <include name="lib/**/*.war" />
 			    </fileset>
 		    <fileset dir="${project.3rdpartylibdir}"/>
 		  </path>
