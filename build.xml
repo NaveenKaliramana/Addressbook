@@ -307,11 +307,11 @@
 	  <mapper>
 	    <chainedmapper>
 	       <flattenmapper/>
-	       <globmapper from="*.jar" to="${project.3rdpartylibdir}/*.jar"/>
+	       <globmapper from="*.war" to="${project.3rdpartylibdir}/*.war"/>
 	    </chainedmapper>
 	  </mapper>
 	</pathconvert>
-    <jar jarfile="${maven.build.dir}/${maven.build.finalName}.jar" 
+    <war warfile="${maven.build.dir}/${maven.build.finalName}.war" 
          compress="true"   index="false" 
          basedir="${maven.build.outputDir}"  excludes="**/package.html">
     	 <manifest>
@@ -322,13 +322,13 @@
     	    <attribute name="Implementation-Vendor" value="SeshagiriSriram"/>
     	 	<attribute name="Class-Path" value="${manifest.classpath}"/>
     	 </manifest>
-   </jar>
+   </war>
   </target>
 
   <!-- ====================================================================== -->
   <!-- A dummy target for the package named after the type it creates         -->
   <!-- ====================================================================== -->
-  <target name="jar" depends="package" description="Builds the jar for the application"/>
+  <target name="war" depends="package" description="Builds the war for the application"/>
 
   <!-- ====================================================================== -->
   <!-- Zips files into a zip for deployment                                   -->
@@ -349,10 +349,10 @@
 	  	<echo message="Resource Directory: ${maven.build.resourceDir}" /> 
 	  	<copy todir="${maven.build.dir}/tmp" overwrite="true">
 	  		<fileset dir="${maven.build.resourceDir}"/>
-	  		<file name="${maven.build.dir}/${maven.build.finalName}.jar"/>
+	  		<file name="${maven.build.dir}/${maven.build.finalName}.war"/>
 	  	</copy>
 	  	<zip destfile="${zipoutputdir}/${maven.build.finalName}.zip">
-	  		<zipfileset dir="${maven.build.dir}/tmp" includes="*.properties,*.xml,*.txt, ${maven.build.finalName}.jar"/>
+	  		<zipfileset dir="${maven.build.dir}/tmp" includes="*.properties,*.xml,*.txt, ${maven.build.finalName}.war"/>
 	  		<zipfileset dir="./lib" prefix="lib"/> 
 	  	</zip>
 		<delete dir="${maven.build.dir}/tmp"/>
@@ -373,9 +373,9 @@
    <!-- ====================================================================== -->
    <!-- Installs components to Artifactory                                     -->
    <!-- ====================================================================== -->
-	<target name="install" depends="zip" description="Installs the JAR to artifactory"> 
+	<target name="install" depends="zip" description="Installs the WAR to artifactory"> 
 			<echo message="Maven is found in: ${env.MAVEN_HOME}"/>
-			<artifact:deploy file="${maven.build.dir}/${maven.build.finalName}.jar">
+			<artifact:deploy file="${maven.build.dir}/${maven.build.finalName}.war">
 			      <pom file="pom.xml"/>
 			    <remoteRepository url="${env.BUILD_URL}"/>
 			 </artifact:deploy>
