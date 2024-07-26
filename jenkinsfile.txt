@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Git Clone')  {
             steps  {
-                git 'https://github.com/krnetworktraining1/Addressbook.git/'
+                git 'https://github.com/NaveenKaliramana/Addressbook.git'
             }
         }
         stage ('Compile Stage') {
